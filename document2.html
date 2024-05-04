@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .counter {
+            height: 300px;
+            width: 500px;
+            background-color: gray;
+            color: white;
+            font-size: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 100px auto;
+            gap: 20px;
+        }
+
+        .counter>button {
+            font-size: 30px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: blue;
+            color: white;
+            cursor: pointer;
+        }
+
+        .counter>button:hover {
+            background-color: white;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="counter">
+        <button id="inc">+</button>
+        <b id="display">0</b>
+        <button id="dec">-</button>
+    </div>
+    <script>
+
+        let incBtn = document.getElementById("inc")
+        let decBtn = document.querySelector("#dec")
+        let display = document.querySelector("#display")
+
+        let count = localStorage.getItem("count")
+            ? localStorage.getItem("count")
+            : Number(display.innerHTML)
+        display.innerHTML = count
+        localStorage.setItem("count", count)
+        // console.log(count, typeof count);
+
+        incBtn.addEventListener("click", () => {
+            count++;
+            display.innerHTML = count
+            localStorage.setItem("count", count)
+        })
+        function decrement() {
+            if (count > 0) {
+                count--
+                display.innerHTML = count
+                localStorage.setItem("count", count)
+            } else {
+                alert("can't reduce count below zero")
+            }
+        }
+        decBtn.onclick = decrement
+    </script>
+</body>
+
+</html>
